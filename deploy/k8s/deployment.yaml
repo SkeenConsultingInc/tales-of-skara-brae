@@ -1,0 +1,67 @@
+# Optional Kubernetes manifests for cluster hosting
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tales-of-skara-brae
+  labels:
+    app: tales-of-skara-brae
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tales-of-skara-brae
+  template:
+    metadata:
+      labels:
+        app: tales-of-skara-brae
+    spec:
+      containers:
+        - name: game
+          image: tales-of-skara-brae:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "8080"
+            - name: NITRO_HOST
+              value: "0.0.0.0"
+            - name: NITRO_PORT
+              value: "8080"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tales-of-skara-brae
+spec:
+  type: LoadBalancer
+  selector:
+    app: tales-of-skara-brae
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

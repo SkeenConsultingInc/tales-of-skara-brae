@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build / deploy output
+dist/
+.output/
+.vercel/
+.nitro/
+.tanstack/
+.wrangler/
+
+# Logs & runtime
+*.log
+/tmp/
+/tmp/**
+npm-debug.log*
+.DS_Store
+
+# Local env / secrets
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.idea/
+.vscode/
+*.swp
+
+# Agent QA artifacts (not part of the game ship)
+screenshots/
+/workspace/screenshots/
+
+# Lock noise
+.node_modules.lock
+
+# Agent workspace (not needed to run the game)
+.grok/
+AGENTS.md
+.grok/status
+scripts/qa-*.mjs
