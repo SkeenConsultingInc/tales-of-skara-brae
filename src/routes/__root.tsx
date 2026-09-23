@@ -1,5 +1,4 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
-import { AuthProvider } from "@/lib/auth/provider";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -11,7 +10,7 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
       },
       {
-        title: "Crypts of Eldermere — Dungeon Crawler",
+        title: "Tales of Skara Brae",
       },
       {
         name: "description",
@@ -31,9 +30,7 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body className="bg-bg text-fg antialiased">
-        <AuthProvider>
-          <Outlet />
-        </AuthProvider>
+        <Outlet />
         <Scripts />
       </body>
     </html>
