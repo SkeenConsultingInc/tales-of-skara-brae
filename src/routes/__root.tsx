@@ -1,5 +1,4 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
-import { AuthProvider } from "@/lib/auth/provider";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -31,9 +30,7 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body className="bg-bg text-fg antialiased">
-        <AuthProvider>
-          <Outlet />
-        </AuthProvider>
+        <Outlet />
         <Scripts />
       </body>
     </html>
