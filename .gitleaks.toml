@@ -1,0 +1,8 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Retired historical preview secret removed prior to main tip e8fb27e (CSO R-09 audited 2026-10-25)"
+condition = "AND"
+commits = ["0592c29c3a3011649b9d4fae04ee980c8cac6b1d"]
+paths = ['''src/lib/auth/preview.ts''']
